@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  
+  <head>
+    <meta charset="utf-8" />
+    <link href="css/homepage_style.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Josefin+Sans:400,400italic' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <style>
+      .about {
+      display: none;
+      }
+      .contact {
+      display: none;
+      }
+    </style>
+
+    <title>EvB</title>
+  </head>
+  
+  <body>
+    <div id="page-wrapper">
+      <header id="logo_space">
+	<p id="logo" class="name">Erica von Buelow</p>
+      </header>
+      <nav>
+	<ui id="homepage_nav" class="navigation">
+          <li id="homepage_nav_1" class="nav_item">Musings</li>
+          <li id="homepage_nav_2" class="nav_item">Contact</li>
+          <li id="homepage_nav_3" class="nav_item">About</li>
+          <li id="homepage_nav_4" class="nav_item">Projects</li>
+          <li id="homepage_nav_5" class="nav_item">Sites</li>
+	</ui>
+      </nav>
+      <p id="about_filler" class="about">This is all about me!</p>
+      <ui id="contact_info" class="contact">
+	<li>email</li>
+      </ui>
+    </div>
+  </body>
+<script>
+$("#homepage_nav_1").click(function () {
+    $(".contact").fadeOut("slow")
+    $(".name").animate({top:'50px', left: '0px'}, 1000, function() {
+    // Animation complete.
+  });
+    $(".about").fadeIn("slow");
+      });
+$("#homepage_nav_5").click(function () {
+ $(".about").fadeOut("slow")    
+$(".name").animate({top:'50px', left: '0px'}, 1000, function() {
+    // Animation complete.
+  });
+            $(".contact").fadeIn("slow");
+
+      });
+$(".name").click(function () {
+     $(".about").fadeOut("slow")  
+     $(".contact").fadeOut("slow");  
+     $(".name").animate({top:'175px', left: '425px'}, 1000, function() {
+    // Animation complete.
+  });
+            
+
+      });
+</script>
+
+
+
+
+</html>

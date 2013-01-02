@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  
+  <head>
+<meta charset="utf-8" />
+    <link href="css/*_style.css" media="screen" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <title>Title</title>
+  </head>
+
+<body>
+  <div id="page-wrapper">
+    <header>Header </header>
+    <ui class="navigation">navigation items</ui>
+    <div class="content">Content</div>
+    <footer>Footer</footer>
+</div
+</body>
+
+</html>
+
+

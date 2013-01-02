@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  
+  <head>
+    <meta charset="utf-8" />
+    <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
+    <title>Main Page</title>
+  </head>
+  
+  <body>
+    <div id="page-wrapper">
+      <p id="logo" class="name">Erica von Buelow</p>
+      <ui id="homepage_nav" class="navigation">
+        <li class="nav_item">Musings/li>
+        <li class="nav_item">Contact</li>
+        <li class="nav_item">About</li>
+        <li class="nav_item">Projects</li>
+        <li class="nav_item">Sites</li>
+      </ui>
+    </div>
+  </body>
+
+</html>

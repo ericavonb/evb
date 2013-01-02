@@ -1,0 +1,132 @@
+html, body {
+  margin: 0px;
+  padding: 0px;
+  background-color: #ffffff;
+}
+ui {
+   list-style: none;
+}
+    body a {color:#000000; text-decoration:none}
+    body a:link {color:#000000; text-decoration:none;}
+    body a:visted {color:#000000; text-decoration:none;}
+    body a:hover {color:#CCCCCC; text-decoration:none;}
+    body a:active {color:#FFF; text-decoration:none;}
+    .list_item:hover {color:#CCCCCC; text-decoration:none;}
+    .list_item:active {color:#FFF; text-decoration:none;}
+    
+
+#page-wrapper {
+  position: relative;
+  width: 1200px;
+  /* centers the document */
+  margin: 0 auto;
+  /*
+  hides anything drawn off canvas.
+  remove overflow and height to see things drawn off canvas.
+  */
+  overflow: hidden;
+  height: 1000px;
+}
+p, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+#homepage_nav {
+  background: #616161;
+  border: none;
+  width: 900px;
+  height: 43px;
+  border-radius: 0px;
+  position: absolute;
+  top: 472px;
+  left: 0px;
+}
+.navigation li {
+    cursor:pointer;
+  color: #000000;
+  font-family:"josefin sans";
+  font-size: 20pt;
+  font-weight: normal;
+  font-style: normal;
+  text-align: center;
+  line-height: 1.2;
+  width: 180px;
+  position: absolute;
+  top: 8px;
+  left: 720px;
+  margin: 0;
+}
+#homepage_nav_1 {
+  top: 7px;
+  left: 30px;
+}
+#homepage_nav_2 {
+  top: 7px;
+  left: 180px;
+}
+#homepage_nav_3 {
+  top: 7px;
+  left: 360px;
+}
+#homepage_nav_4 {
+  top: 7px;
+  left: 540px;
+}
+#homepage_nav_5 {
+  top: 7px;
+  left: 720px;
+}
+
+.about {
+  color: #000000;
+  font-family:"josefin sans";
+  font-size: 16pt;
+  font-weight: 400;
+  font-style: italic;
+  text-align: left;
+  line-height: 1.2;
+  width: 560px;  
+  position: absolute;
+  top: 227px;
+  left: 379px;
+  margin: 0;
+}
+
+.contact {
+  color: #000000;
+  font-family:"josefin sans";
+  font-size: 16pt;
+  font-weight: 400;
+  font-style: italic;
+  text-align: left;
+  line-height: 1.2;
+  width: 560px;  
+  position: absolute;
+  top: 227px;
+  left: 379px;
+  margin: 0;
+}
+
+#logo_space {
+position:absolute;
+top:25px;
+left:20px;
+width:1160px;
+height:400px;
+}
+
+.name {
+  color: #000000;
+  font-family:"josefin sans";
+  font-size: 35pt;
+  font-weight: normal;
+  font-style: normal;
+  text-align: left;
+  line-height: 1.2;
+  position:absolute;
+  top: 175px;
+  width: 330px;
+  margin: 0;
+  left:425px
+}
+
+    
