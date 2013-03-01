@@ -1,6 +1,15 @@
 (ns personal_website.homepage_enlive
-  (:use [net.cgrand.enlive-html :only [deftemplate content append do->
-                                       set-attr sniptest at emit* wrap]]))
+  (:use [net.cgrand.enlive-html :only [deftemplate
+                                       defsnippet
+                                       content
+                                       append
+                                       do->
+                                       set-attr
+                                       sniptest
+                                       at
+                                       emit*
+                                       wrap
+                                       any-node]]))
 
 
 ;; =======================================
@@ -11,7 +20,7 @@
   "puts links around the items of the list items,
     where the items are maps with keys :label and :href.
     Link is made iff the item has a :href value"
-  (map #(if-let [href (% :href)]
+  (map #(if-let [href (:href %)]
     ((wrap :a {:href href}) (get % :label ""))
     (get % :label "")) items))
 
@@ -30,12 +39,14 @@
 
 (defn format-contact [info]
   "Put contact info in right form"
-  [{:label (format "Email: %s" (info :email))
-    :href (format "mailto:%s" (info :email))}
+  [{:label (format "Email: %s" (:email info))
+    :href (format "mailto:%s" (:email info))}
+   {:label "Github"
+    :href (format "https://github.com/%s" (:github info))}
    {:label "Facebook"
-    :href (format "http://www.facebook.com/%s" (info :facebook))}
+    :href (format "http://www.facebook.com/%s" (:facebook info))}
    {:label "Twitter"
-    :href (format "http://twitter.com/%s" (info :twitter))}])
+    :href (format "http://twitter.com/%s" (:twitter info))}])
    
 ;; ========================================
 ;; The main template for the homepage
@@ -47,6 +58,24 @@
   [:.contact] (make-list (format-contact contact-info))
   [:#logo] (content name)
   [:.navigation] (make-list nav-items))
+
+
+(defsnippet header "personal_website/html/homepage.html" [:header :> any-node]
+  [{:keys [name nav-items about contact-info]}]
+  [:.name] (content ((wrap :a {:href "/"}) name)))
+
+(defsnippet nav "personal_website/html/homepage.html" [:nav :> any-node]
+  [{:keys [nav-items]}]
+  [:.navigation] (make-list nav-items))
+
+(defsnippet contents "personal_website/html/homepage.html" [:.contents :> any-node]
+  [{:keys [about contact-info]}]
+  [:.about] (content about)
+  [:.contact] (make-list (format-contact contact-info)))
+
+(defsnippet footer "personal_website/html/homepage.html" [:footer :> any-node]
+  [args]
+  [:.site-nav] (content [""]))
 
 
 

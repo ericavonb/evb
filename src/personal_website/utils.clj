@@ -6,7 +6,7 @@
         [ring.middleware.file :only [wrap-file]]
         [ring.middleware.stacktrace :only [wrap-stacktrace]]))
 
-(def *webdir* "/Users/mjdesa/projects/personal_website/src/personal_website/")
+(def *webdir* "/Users/evonbuelow/projects/personal_website/src/personal_website/")
 
 (defn render [t]
   (apply str t))
@@ -31,7 +31,7 @@
     :index-files? true
     :html-files? true}))
 
-(defn run-server* [app & {:keys [port] :or {port 8080}}]
+(defn run-server* [app & {:keys [port] :or {port 8888}}]
   (let [nses (if-let [m (meta app)]
                [(-> (:ns (meta app)) str symbol)]
                [])]

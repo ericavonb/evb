@@ -1,24 +1,26 @@
 (ns personal_website.main_template
-    (:require [personal_website.homepage_enlive :as homepage])
-  (:use [personal_website.defaults :only [*default*]]
+  (:gen-class)
+  (:require [personal_website.homepage_enlive :as homepage])
+  (:use [personal_website.defaults :only [*default* *homepage* ]]
         [net.cgrand.enlive-html :only [deftemplate content append do->
-                                       set-attr sniptest at emit* wrap]]
+                                       set-attr sniptest at emit* wrap
+                                       html-content]]
         [net.cgrand.moustache :only [app]]
         [personal_website.utils
-         :only [run-server render-to-response render-request page-not-found]]))
+         :only [*webdir* run-server render-to-response render-request page-not-found]]))
 
 
-(def section-model
-  {:homepage {:header homepage/header :navigation homepage/navigation
-              :content homepage/content :footer homepage/footer}
-   :musings {:header musings/header :navigation musings/navigation
-             :content musings/content :footer musings/footer}})
+;(def section-model
+;  {:homepage {:header homepage/header :navigation homepage/navigation
+;              :content homepage/content :footer homepage/footer}
+;   :musings {:header musings/header :navigation musings/navigation
+;             :content musings/content :footer musings/footer}})
 
-(defn make-section [section]
-  (let [sec (section-model (section :section))
-        cont (section :content)
-        scs (keys cont)]
-    (map #(apply (get sec %) (cont %)) scs)))
+;(defn make-section [section]
+;  (let [sec (section-model (section :section))
+;        cont (section :content)
+;        scs (keys cont)]
+;    (map #(apply (get sec %) (cont %)) scs)))
   
  ;; =======================================
 ;; Helper Functions
@@ -47,32 +49,52 @@
 
 (defn format-contact [info]
   "Put contact info in right form"
-  [{:label (format "Email: %s" (info :email))
-    :href (format "mailto:%s" (info :email))}
+  [{:label (format "Email: %s" (:email info))
+    :href (format "mailto:%s" (:email info))}
    {:label "Facebook"
-    :href (format "http://www.facebook.com/%s" (info :facebook))}
+    :href (format "http://www.facebook.com/%s" (:facebook info))}
    {:label "Twitter"
-    :href (format "http://twitter.com/%s" (info :twitter))}])
+    :href (format "http://twitter.com/%s" (:twitter info))}])
    
 ;; ========================================
-;; The main template for the homepage
-;; ========================================
+;; The main template
+;; ========================================)
+(defn file-to-string [uri]
+  (->
+      (new java.util.Scanner (new java.io.File uri))
+    (.useDelimiter "\\A")
+    (.next)))
 
-(deftemplate homepage_template "personal_website/html/homepage.html"
-  [{:keys [name nav-items about contact-info]}]
-  [:.about] (content about)
-  [:.contact] (make-list (format-contact contact-info))
-  [:#logo] (content name)
-  [:.navigation] (make-list nav-items))  
+(defn section [{:keys [snippet args attr]}]
+  (do->
+   (content (snippet args))
+   (apply set-attr (flatten (into [] attr)))))
 
-  
+(defn format-scripts [scripts loc]
+    (map #(append ((wrap :script (dissoc % :body :script))
+                   (if (= loc :body)
+                     (file-to-string (str *webdir* (:src %)))
+                     (:script %))))
+         (filter #(contains? % loc) scripts)))
+
+(defn format-scripts2 [scripts loc]
+  (map #(append ((wrap :script (dissoc % :body :head :script)) (:script %)))
+       (filter #(contains? % loc) scripts)))
+
+
+
+
 (deftemplate index "personal_website/html/main_template.html"
-  [{:keys [title sections]}]
-  [:#title] (content title)
-  [:body]   [])
+  [{:keys [title scripts style header nav contents footer]}]
+  [:title] (content title)
+  [:head] (apply do-> (concat (map #(append ((wrap :link %) [""])) style)
+                              (format-scripts scripts :head)))
+  [:header] (section header)
+  [:nav] (section nav)
+  [:.contents] (section contents)
+  [:footer] (section footer)
+  [:body] (apply do-> (format-scripts scripts :body)))
 
-
- 
 
 
 ;; =======================================
@@ -82,14 +104,10 @@
 
 (def routes
      (app
-      [""]  (fn [req] (render-to-response (index *default*)))
-      ["Projects"] (fn [req] (render-to-response(index *default*)))
-      ["Musings"] (fn [req] (render-to-response (index *default*)))
-      ["Sites"] (fn [req] (render-to-response (index *default*)))
-      [&]   page-not-found))
+      [""]  (fn [req] (render-to-response (index *homepage*)))))
 
-;; ========================================
-;; The App
-;; ========================================
+;      ["Projects"] (fn [req] (render-to-response(index *default*)))
+;      ["Musings"] (fn [req] (render-to-response (index *default*)))
+;      ["Sites"] (fn [req] (render-to-response (index *default*)))
+;      [&]   page-not-found))
 
-(defonce *server* (run-server routes))

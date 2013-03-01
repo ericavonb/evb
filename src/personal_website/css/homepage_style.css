@@ -30,7 +30,7 @@ ui {
 p, h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
-#homepage_nav {
+#homepage_nav_list {
   background: #616161;
   border: none;
   width: 900px;
@@ -40,7 +40,7 @@ p, h1, h2, h3, h4, h5, h6 {
   top: 472px;
   left: 0px;
 }
-.navigation li {
+#homepage_nav_list li {
     cursor:pointer;
   color: #000000;
   font-family:"josefin sans";
@@ -50,10 +50,8 @@ p, h1, h2, h3, h4, h5, h6 {
   text-align: center;
   line-height: 1.2;
   width: 180px;
-  position: absolute;
-  top: 8px;
-  left: 720px;
   margin: 0;
+  float: left;
 }
 #homepage_nav_1 {
   top: 7px;
@@ -101,7 +99,7 @@ p, h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   width: 560px;  
   position: absolute;
-  top: 227px;
+  top: 257px;
   left: 379px;
   margin: 0;
 }
@@ -127,6 +125,11 @@ height:400px;
   width: 330px;
   margin: 0;
   left:425px
+}
+
+
+footer {
+    display: none;
 }
 
     
