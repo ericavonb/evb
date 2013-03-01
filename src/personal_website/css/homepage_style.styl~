@@ -1,0 +1,98 @@
+@import '_settings'
+
+normalize()
+base()
+
+my-links(color = #000)
+  a
+  a:link
+  a:visited
+    color: color
+    text-decoration: none
+  a:hover
+    color: lighten(color, 30%)
+    text-decoration: none
+  a:active
+    color: lighten(color, 90%)
+    text-decoration: none
+
+body
+  my-links()
+
+  ul
+    list-style: none
+
+
+#page-wrapper
+  max-width: 1000px
+  height: 675px
+  margin: 0px auto
+  position: relative
+
+mid-header()
+  absolute: top 40% left 50%
+  width: 300px
+  height: 35px
+  margin: -35px 0px 0px -150px
+
+high-header()
+  absolute: top 0% left 0%
+  width: 300px
+  height: 35px
+  margin: 50px 0px
+
+header
+  high-header()
+
+
+
+h1
+  fs(35px)
+  font-weight: normal
+  font-style: normal
+  line-height: 35px
+  margin: 0px
+
+nav
+  width: 900px;
+  height: 43px;
+  absolute: top 80% left 50%
+  margin: 0px 0px 0px -450px
+  padding: 0px
+
+  ul
+    margin: 0px
+    padding: 0px
+    li
+      float: left
+      width: 180px
+
+.contents
+  absolute: top 150px left 0%
+  padding: 150px
+  width: 700px
+
+.about
+  fs(18px)
+  absolute: left 50% top 50px
+  size: 500px 100px
+  margin: 0px 0px 0px -250px
+
+mid-contact()
+  absolute: left 50% top 190px
+  size: 700px 100px
+  margin: 0px 0px 0px -350px
+  li
+    float: left
+    margin-left: 30px
+
+upper-contact()
+  absolute: left 30% top -85px
+  size: 700px 100px
+  margin: 0px 50px
+  li
+    float: left
+    margin-left: 30px
+
+.contact
+  upper-contact()

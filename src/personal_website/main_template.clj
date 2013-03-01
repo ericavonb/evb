@@ -10,18 +10,6 @@
          :only [*webdir* run-server render-to-response render-request page-not-found]]))
 
 
-;(def section-model
-;  {:homepage {:header homepage/header :navigation homepage/navigation
-;              :content homepage/content :footer homepage/footer}
-;   :musings {:header musings/header :navigation musings/navigation
-;             :content musings/content :footer musings/footer}})
-
-;(defn make-section [section]
-;  (let [sec (section-model (section :section))
-;        cont (section :content)
-;        scs (keys cont)]
-;    (map #(apply (get sec %) (cont %)) scs)))
-  
  ;; =======================================
 ;; Helper Functions
 ;; =======================================
@@ -76,10 +64,6 @@
                      (file-to-string (str *webdir* (:src %)))
                      (:script %))))
          (filter #(contains? % loc) scripts)))
-
-(defn format-scripts2 [scripts loc]
-  (map #(append ((wrap :script (dissoc % :body :head :script)) (:script %)))
-       (filter #(contains? % loc) scripts)))
 
 
 

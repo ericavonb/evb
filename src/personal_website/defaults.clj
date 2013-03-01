@@ -26,9 +26,9 @@
 (def *homepage*
   {:title "EvB"
    :scripts [*jquery*
-             {:type "text/javascript" :src "js/homepage.js" :body true}]
+             {:type "text/javascript" :src "/js/homepage.js" :body true}]
    :style [*josefin*
-           {:href "css/homepage_style.css" :media "screen"
+           {:href "/css/homepage_style.css" :media "screen"
             :rel "stylesheet" :type "text/css"}]
    
    :header {:snippet homepage/header
@@ -36,11 +36,11 @@
             :attr {:id "homepage_header"}}
    
    :nav {:snippet homepage/nav
-         :args {:nav-items [{:label "About"}
+         :args {:nav-items [{:label "About" :href ""}
                 {:href "Projects" :label "Projects"}
                 {:href "Musings" :label "Musings"}
                 {:href "Sites" :label "Sites"}
-                {:label "Contact"}]}
+                {:label "Contact" :href ""}]}
          :attr {:id "homepage_nav"}}
    
    :contents {:snippet homepage/contents

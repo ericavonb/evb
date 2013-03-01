@@ -8,7 +8,7 @@
                  [korma "0.3.0-beta7"]
 		 [org.mindrot/jbcrypt "0.3m"]
                  ]
-    :main personal_website.main_template
+    :main personal_website.core
 
   :plugins [[lein-swank "1.4.4"]])
 		
